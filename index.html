@@ -95,20 +95,23 @@
   </footer>
 
   <script>
-    function updateTime() {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('clock').textContent = Saat: ${hours}:${minutes}:${seconds};
+    document.addEventListener("DOMContentLoaded", function () {
+      function updateTime() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const clockText = Saat: ${hours}:${minutes}:${seconds};
+        document.getElementById("clock").textContent = clockText;
 
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      const formattedDate = now.toLocaleDateString('tr-TR', options);
-      document.getElementById('date').textContent = Tarih: ${formattedDate};
-    }
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = now.toLocaleDateString('tr-TR', options);
+        document.getElementById("date").textContent = Tarih: ${formattedDate};
+      }
 
-    updateTime();
-    setInterval(updateTime, 1000);
+      updateTime();
+      setInterval(updateTime, 1000);
+    });
   </script>
 </body>
 </html>
