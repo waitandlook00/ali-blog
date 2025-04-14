@@ -20,6 +20,7 @@
     nav {
       background-color: #333;
       display: flex;
+      flex-wrap: wrap; /* Mobil uyum için eklendi */
       justify-content: center;
       padding: 10px;
     }
@@ -38,6 +39,7 @@
       background-color: white;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       border-radius: 8px;
+      box-sizing: border-box; /* Taşmayı engellemek için eklendi */
     }
     footer {
       background-color: #111;
@@ -53,6 +55,24 @@
     }
     .post {
       margin-bottom: 30px;
+    }
+
+    /* Mobil uyum için medya sorguları */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 24px;
+      }
+      nav a {
+        margin: 10px;
+        display: block;
+        text-align: center;
+      }
+      .content {
+        padding: 10px;
+      }
+      footer {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
