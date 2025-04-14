@@ -61,6 +61,14 @@
     .post {
       margin-bottom: 30px;
     }
+    #radioBox {
+      text-align: center;
+      margin-top: 20px;
+    }
+    #radioBox audio {
+      width: 100%;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -83,6 +91,20 @@
     <!-- Hava Durumu Kutusu -->
     <div class="info-box" id="weatherBox">
       Hava durumu yükleniyor...
+    </div>
+
+    <!-- Saat ve Tarih -->
+    <div class="info-box" id="timeBox">
+      Saat ve tarih yükleniyor...
+    </div>
+
+    <!-- Radyo Kutusu -->
+    <div id="radioBox">
+      <h2>Radyo Dinle</h2>
+      <audio controls>
+        <source src="https://listen.radionomy.com/rockradio" type="audio/mp3">
+        Tarayıcınız ses dosyasını desteklemiyor.
+      </audio>
     </div>
 
     <div class="post">
@@ -116,13 +138,22 @@
       .then(data => {
         const temp = data.current_weather.temperature;
         const wind = data.current_weather.windspeed;
-        const weather = data.current_weather.weathercode;
         document.getElementById("weatherBox").innerText =
           İstanbul'da Hava: ${temp}°C, Rüzgar: ${wind} km/sa;
       })
       .catch(error => {
         document.getElementById("weatherBox").innerText = "Hava durumu alınamadı.";
       });
+
+    // Saat ve Tarih
+    setInterval(() => {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+      const date = now.toLocaleDateString();
+      document.getElementById('timeBox').innerText = Tarih: ${date} | Saat: ${hours}:${minutes}:${seconds};
+    }, 1000);
   </script>
 </body>
 </html>
