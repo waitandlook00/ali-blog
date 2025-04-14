@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ali'nin Blogu</title>
+
+  <!-- Açıklama ve sosyal medya görünürlüğü -->
+  <meta name="description" content="Ali'nin kişisel blog sayfası - Hayat, Direniş ve Gerçekler Üzerine." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Ali'nin Blogu" />
+  <meta property="og:description" content="Hayat, Direniş ve Gerçekler Üzerine..." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://waitandlook00.github.io/ali-blog/" />
+  <meta property="og:locale" content="tr_TR" />
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -39,13 +49,6 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       border-radius: 8px;
     }
-    .info-box {
-      background: #e3f2fd;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-left: 5px solid #2196f3;
-      border-radius: 6px;
-    }
     footer {
       background-color: #111;
       color: white;
@@ -61,14 +64,6 @@
     .post {
       margin-bottom: 30px;
     }
-    #radioBox {
-      text-align: center;
-      margin-top: 20px;
-    }
-    #radioBox audio {
-      width: 100%;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
@@ -82,31 +77,6 @@
     <a href="#">İletişim</a>
   </nav>
   <div class="content">
-
-    <!-- Dinamik Yazı Kutusu -->
-    <div class="info-box" id="quoteBox">
-      Günün sözü yükleniyor...
-    </div>
-
-    <!-- Hava Durumu Kutusu -->
-    <div class="info-box" id="weatherBox">
-      Hava durumu yükleniyor...
-    </div>
-
-    <!-- Saat ve Tarih -->
-    <div class="info-box" id="timeBox">
-      Saat ve tarih yükleniyor...
-    </div>
-
-    <!-- Radyo Kutusu -->
-    <div id="radioBox">
-      <h2>Radyo Dinle</h2>
-      <audio controls>
-        <source src="https://listen.radionomy.com/rockradio" type="audio/mp3">
-        Tarayıcınız ses dosyasını desteklemiyor.
-      </audio>
-    </div>
-
     <div class="post">
       <h2>İlk Yazım: Merhaba Dünya!</h2>
       <p>Bu blog, bir direnişin, yeniden doğuşun ve hiç vazgeçmeyen bir adamın hikayesidir. Şimdilik kısa ama yürekten bir başlangıç...</p>
@@ -119,41 +89,5 @@
   <footer>
     © 2025 Ali'nin Blogu. Tüm hakları saklıdır.
   </footer>
-
-  <script>
-    // Günlük sözler
-    const quotes = [
-      "Küllerinden doğan, bir daha asla eskisi gibi olmaz.",
-      "Bugün yine yeniden başlamak için güzel bir gün.",
-      "Zorluklar seni değil, sabrını test eder.",
-      "Geriye değil, hep ileriye bak.",
-      "Yorgunsan, dur ve dinlen. Vazgeçme."
-    ];
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    document.getElementById('quoteBox').innerText = "Günün Sözü: " + randomQuote;
-
-    // Hava durumu (İstanbul örneği - Open-Meteo API)
-    fetch("https://api.open-meteo.com/v1/forecast?latitude=41.0082&longitude=28.9784&current_weather=true")
-      .then(response => response.json())
-      .then(data => {
-        const temp = data.current_weather.temperature;
-        const wind = data.current_weather.windspeed;
-        document.getElementById("weatherBox").innerText =
-          İstanbul'da Hava: ${temp}°C, Rüzgar: ${wind} km/sa;
-      })
-      .catch(error => {
-        document.getElementById("weatherBox").innerText = "Hava durumu alınamadı.";
-      });
-
-    // Saat ve Tarih
-    setInterval(() => {
-      const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-      const date = now.toLocaleDateString();
-      document.getElementById('timeBox').innerText = Tarih: ${date} | Saat: ${hours}:${minutes}:${seconds};
-    }, 1000);
-  </script>
 </body>
 </html>
