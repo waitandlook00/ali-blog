@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ali'nin Blogu</title>
   <style>
     body {
@@ -20,8 +20,8 @@
     nav {
       background-color: #333;
       display: flex;
-      flex-wrap: wrap; /* Mobil uyum için eklendi */
       justify-content: center;
+      flex-wrap: wrap;
       padding: 10px;
     }
     nav a {
@@ -39,38 +39,28 @@
       background-color: white;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       border-radius: 8px;
-      box-sizing: border-box; /* Taşmayı engellemek için eklendi */
+    }
+    .post {
+      margin-bottom: 30px;
     }
     footer {
       background-color: #111;
       color: white;
       text-align: center;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+      padding: 20px 10px;
     }
-    h2 {
-      color: #222;
+    .clock-container {
+      margin-top: 15px;
+      font-size: 18px;
     }
-    .post {
-      margin-bottom: 30px;
+    #clock, #date {
+      font-weight: bold;
+      display: block;
+      margin: 5px 0;
     }
-
-    /* Mobil uyum için medya sorguları */
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 24px;
-      }
       nav a {
-        margin: 10px;
-        display: block;
-        text-align: center;
-      }
-      .content {
-        padding: 10px;
-      }
-      footer {
+        margin: 5px 10px;
         font-size: 14px;
       }
     }
@@ -97,49 +87,24 @@
     </div>
   </div>
   <footer>
+    <div class="clock-container">
+      <span id="date">Tarih yükleniyor...</span>
+      <span id="clock">Saat yükleniyor...</span>
+    </div>
     © 2025 Ali'nin Blogu. Tüm hakları saklıdır.
   </footer>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saat & Takvim Testi</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-      background-color: #f7f7f7;
-    }
-    #clock, #date {
-      font-size: 24px;
-      margin: 10px;
-      padding: 10px;
-      background: #fff;
-      display: inline-block;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-  </style>
-</head>
-<body>
-  <div id="clock">--:--:--</div>
-  <div id="date">-- -- ----</div>
 
   <script>
     function updateTime() {
       const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-      document.getElementById('clock').innerText = ${hours}:${minutes}:${seconds};
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = Saat: ${hours}:${minutes}:${seconds};
 
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      const dateStr = now.toLocaleDateString('tr-TR', options);
-      document.getElementById('date').innerText = dateStr;
+      const formattedDate = now.toLocaleDateString('tr-TR', options);
+      document.getElementById('date').textContent = Tarih: ${formattedDate};
     }
 
     updateTime();
