@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ali'nin Blogu</title>
   <style>
     body {
@@ -21,7 +21,6 @@
       background-color: #333;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
       padding: 10px;
     }
     nav a {
@@ -40,29 +39,27 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       border-radius: 8px;
     }
-    .post {
-      margin-bottom: 30px;
+    .info-box {
+      background: #e3f2fd;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-left: 5px solid #2196f3;
+      border-radius: 6px;
     }
     footer {
       background-color: #111;
       color: white;
       text-align: center;
-      padding: 20px 10px;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
     }
-    .clock-container {
-      margin-top: 15px;
-      font-size: 18px;
+    h2 {
+      color: #222;
     }
-    #clock, #date {
-      font-weight: bold;
-      display: block;
-      margin: 5px 0;
-    }
-    @media (max-width: 600px) {
-      nav a {
-        margin: 5px 10px;
-        font-size: 14px;
-      }
+    .post {
+      margin-bottom: 30px;
     }
   </style>
 </head>
@@ -77,6 +74,17 @@
     <a href="#">İletişim</a>
   </nav>
   <div class="content">
+
+    <!-- Dinamik Yazı Kutusu -->
+    <div class="info-box" id="quoteBox">
+      Günün sözü yükleniyor...
+    </div>
+
+    <!-- Hava Durumu Kutusu -->
+    <div class="info-box" id="weatherBox">
+      Hava durumu yükleniyor...
+    </div>
+
     <div class="post">
       <h2>İlk Yazım: Merhaba Dünya!</h2>
       <p>Bu blog, bir direnişin, yeniden doğuşun ve hiç vazgeçmeyen bir adamın hikayesidir. Şimdilik kısa ama yürekten bir başlangıç...</p>
@@ -87,31 +95,34 @@
     </div>
   </div>
   <footer>
-    <div class="clock-container">
-      <span id="date">Tarih yükleniyor...</span>
-      <span id="clock">Saat yükleniyor...</span>
-    </div>
     © 2025 Ali'nin Blogu. Tüm hakları saklıdır.
   </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      function updateTime() {
-        const now = new Date();
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        const clockText = Saat: ${hours}:${minutes}:${seconds};
-        document.getElementById("clock").textContent = clockText;
+    // Günlük sözler
+    const quotes = [
+      "Küllerinden doğan, bir daha asla eskisi gibi olmaz.",
+      "Bugün yine yeniden başlamak için güzel bir gün.",
+      "Zorluklar seni değil, sabrını test eder.",
+      "Geriye değil, hep ileriye bak.",
+      "Yorgunsan, dur ve dinlen. Vazgeçme."
+    ];
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById('quoteBox').innerText = "Günün Sözü: " + randomQuote;
 
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        const formattedDate = now.toLocaleDateString('tr-TR', options);
-        document.getElementById("date").textContent = Tarih: ${formattedDate};
-      }
-
-      updateTime();
-      setInterval(updateTime, 1000);
-    });
+    // Hava durumu (İstanbul örneği - Open-Meteo API)
+    fetch("https://api.open-meteo.com/v1/forecast?latitude=41.0082&longitude=28.9784&current_weather=true")
+      .then(response => response.json())
+      .then(data => {
+        const temp = data.current_weather.temperature;
+        const wind = data.current_weather.windspeed;
+        const weather = data.current_weather.weathercode;
+        document.getElementById("weatherBox").innerText =
+          İstanbul'da Hava: ${temp}°C, Rüzgar: ${wind} km/sa;
+      })
+      .catch(error => {
+        document.getElementById("weatherBox").innerText = "Hava durumu alınamadı.";
+      });
   </script>
 </body>
 </html>
