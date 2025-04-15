@@ -61,14 +61,6 @@
     .post {
       margin-bottom: 30px;
     }
-    #radioBox {
-      text-align: center;
-      margin-top: 20px;
-    }
-    #radioBox audio {
-      width: 100%;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
@@ -93,48 +85,7 @@
       Hava durumu yükleniyor...
     </div>
 
-    <!-- Saat ve Tarih -->
-    <div class="info-box" id="timeBox">
-      Saat ve tarih yükleniyor...
-    </div>
-
-    <!-- Radyo Kutusu -->
-    <div id="radioBox">
-      <h2>Radyo Dinle</h2>
-      <audio controls>
-        <source src="https://listen.radionomy.com/rockradio" type="audio/mp3">
-        Tarayıcınız ses dosyasını desteklemiyor.
-      </audio>
-    </div>
-
     <div class="post">
-      <div class="post">
-  <h2>Ben Kimim?</h2>
-  <p>
-    Adım Ali. Bu blog, kalemle değil yürekle yazılmış satırlardan ibaret.<br>
-    Burada hiçbir şey süslenmedi, hiçbir kelime makyajlanmadı.<br>
-    Hayatın içinden, kırılgan ama dimdik bir ses duyacaksın.
-  </p>
-</div>
-
-<div class="post">
-  <h2>Bu Blog Ne İçin Var?</h2>
-  <p>
-    Bu blog, düşenin dostu, direnenin sesi, susanın çığlığı olsun diye açıldı.<br>
-    Her kelime bir yaradan doğdu, her cümle bir umutla tamamlandı.<br>
-    Burada ne varsa; gerçekten var. Ne eksik, ne fazla.
-  </p>
-</div>
-
-<div class="post">
-  <h2>Nereye Gidiyoruz?</h2>
-  <p>
-    Gidecek yerimiz yok belki ama anlatacak çok şeyimiz var.<br>
-    Bu yol, düşe kalka yürünecek. Hep birlikte.<br>
-    Çünkü bazen bir yazı, insanı hayatta tutar.  
-  </p>
-</div>
-
       <h2>İlk Yazım: Merhaba Dünya!</h2>
       <p>Bu blog, bir direnişin, yeniden doğuşun ve hiç vazgeçmeyen bir adamın hikayesidir. Şimdilik kısa ama yürekten bir başlangıç...</p>
     </div>
@@ -159,7 +110,7 @@
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     document.getElementById('quoteBox').innerText = "Günün Sözü: " + randomQuote;
 
-    // Hava durumu (İstanbul örneği - Open-Meteo API)
+    // Hava durumu (İstanbul)
     fetch("https://api.open-meteo.com/v1/forecast?latitude=41.0082&longitude=28.9784&current_weather=true")
       .then(response => response.json())
       .then(data => {
@@ -171,16 +122,6 @@
       .catch(error => {
         document.getElementById("weatherBox").innerText = "Hava durumu alınamadı.";
       });
-
-    // Saat ve Tarih
-    setInterval(() => {
-      const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-      const date = now.toLocaleDateString();
-      document.getElementById('timeBox').innerText = `Tarih: ${date} | Saat: ${hours}:${minutes}:${seconds}`;
-    }, 1000);
   </script>
 </body>
 </html>
