@@ -7,12 +7,14 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: url('https://source.unsplash.com/1600x900/?nature,sky') no-repeat center center fixed;
+      background-image: url('https://source.unsplash.com/1600x900/?nature,sky'); 
       background-size: cover;
-      background-color: rgba(0, 0, 0, 0.6); /* yedek renk */
-      backdrop-filter: blur(2px);
+      background-position: center center;
+      background-attachment: fixed;
       margin: 0;
       padding: 0;
+      color: white;
+      backdrop-filter: blur(3px); /* Arka planı daha bulanık yapalım */
     }
 
     header {
@@ -45,7 +47,7 @@
       max-width: 800px;
       margin: 20px auto;
       padding: 0 20px;
-      background-color: rgba(255, 255, 255, 0.9); /* daha net okunabilir */
+      background-color: rgba(255, 255, 255, 0.9);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
     }
@@ -76,10 +78,11 @@
       margin-bottom: 30px;
     }
 
+    /* Radyo Titreşim Animasyonu */
     .wave {
       display: inline-block;
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       background: #4caf50;
       margin-left: 5px;
       border-radius: 50%;
@@ -90,6 +93,19 @@
       0% { transform: scale(1); opacity: 0.6; }
       50% { transform: scale(1.5); opacity: 1; }
       100% { transform: scale(1); opacity: 0.6; }
+    }
+
+    /* Titreşim için ses dalgası efekti */
+    .radio-box {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .radio-box audio {
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -118,7 +134,7 @@
     </div>
 
     <!-- Radyo Kutusu -->
-    <div class="info-box" id="radioBox">
+    <div class="info-box radio-box" id="radioBox">
       🎧 <span class="wave"></span> Relax FM çalıyor...
       <audio controls autoplay>
         <source src="https://radyo.dogannet.tv/slowturk" type="audio/mpeg">
@@ -158,7 +174,6 @@
       .then(data => {
         const temp = data.current_weather.temperature;
         const wind = data.current_weather.windspeed;
-        const weather = data.current_weather.weathercode;
         document.getElementById("weatherBox").innerText =
           `İstanbul'da Hava: ${temp}°C, Rüzgar: ${wind} km/sa`;
       })
