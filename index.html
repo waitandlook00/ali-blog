@@ -61,6 +61,17 @@
     .post {
       margin-bottom: 30px;
     }
+    .radio-box {
+      background: #fff3e0;
+      padding: 15px;
+      border-left: 5px solid #ff9800;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    .radio-box audio {
+      width: 100%;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -68,23 +79,35 @@
     <h1>Ali'nin Blogu</h1>
     <p>Hayat, Direniş ve Gerçekler Üzerine...</p>
   </header>
+
   <nav>
     <a href="#">Anasayfa</a>
     <a href="#">Hakkımda</a>
     <a href="#">İletişim</a>
   </nav>
+
   <div class="content">
 
-    <!-- Dinamik Yazı Kutusu -->
+    <!-- Günün Sözü -->
     <div class="info-box" id="quoteBox">
       Günün sözü yükleniyor...
     </div>
 
-    <!-- Hava Durumu Kutusu -->
+    <!-- Hava Durumu -->
     <div class="info-box" id="weatherBox">
       Hava durumu yükleniyor...
     </div>
 
+    <!-- Radyo -->
+    <div class="radio-box">
+      <strong>Canlı Radyo: Relax FM 🎵</strong>
+      <audio controls>
+        <source src="https://radyomeyra.radyotvonline.com/stream/1/" type="audio/mpeg">
+        Tarayıcınız ses çaları desteklemiyor.
+      </audio>
+    </div>
+
+    <!-- Yazılar -->
     <div class="post">
       <h2>İlk Yazım: Merhaba Dünya!</h2>
       <p>Bu blog, bir direnişin, yeniden doğuşun ve hiç vazgeçmeyen bir adamın hikayesidir. Şimdilik kısa ama yürekten bir başlangıç...</p>
@@ -93,13 +116,15 @@
       <h2>Hayat Bir Fragmandır</h2>
       <p>Her düşüş bir kalkışın habercisidir. Eğer bu satırları okuyorsan, hâlâ ayaktayız demektir...</p>
     </div>
+
   </div>
+
   <footer>
     © 2025 Ali'nin Blogu. Tüm hakları saklıdır.
   </footer>
 
   <script>
-    // Günlük sözler
+    // Günlük söz
     const quotes = [
       "Küllerinden doğan, bir daha asla eskisi gibi olmaz.",
       "Bugün yine yeniden başlamak için güzel bir gün.",
@@ -110,7 +135,7 @@
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     document.getElementById('quoteBox').innerText = "Günün Sözü: " + randomQuote;
 
-    // Hava durumu (İstanbul)
+    // Hava durumu (Open-Meteo API)
     fetch("https://api.open-meteo.com/v1/forecast?latitude=41.0082&longitude=28.9784&current_weather=true")
       .then(response => response.json())
       .then(data => {
