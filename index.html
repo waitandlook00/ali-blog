@@ -3,183 +3,177 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ali'nin Blogu</title>
+  <title>Ali'nin E-Ticaret Blogu</title>
   <style>
+    /* Genel stil */
     body {
       font-family: Arial, sans-serif;
-      background-image: url('https://source.unsplash.com/1600x900/?nature,sky'); 
-      background-size: cover;
-      background-position: center center;
-      background-attachment: fixed;
       margin: 0;
       padding: 0;
-      color: white;
-      backdrop-filter: blur(3px); /* Arka planı daha bulanık yapalım */
+      background-color: #f4f4f4;
     }
 
+    /* Header */
     header {
-      background: url('https://source.unsplash.com/1600x400/?sunset,sky') no-repeat center center;
-      background-size: cover;
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-      text-shadow: 1px 1px 3px black;
-    }
-
-    nav {
       background-color: #333;
+      color: white;
+      padding: 20px;
       display: flex;
-      justify-content: center;
-      padding: 10px;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    nav a {
+    header .logo h1 {
+      margin: 0;
+    }
+
+    header nav a {
       color: white;
       text-decoration: none;
-      margin: 0 15px;
+      margin-left: 15px;
     }
 
-    nav a:hover {
+    header nav a:hover {
       text-decoration: underline;
     }
 
-    .content {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 0 20px;
-      background-color: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-    }
-
-    .info-box {
-      background: #e3f2fd;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-left: 5px solid #2196f3;
-      border-radius: 6px;
-    }
-
-    footer {
+    /* Hero Section */
+    #hero {
       background-color: #111;
       color: white;
       text-align: center;
-      padding: 10px;
+      padding: 50px 0;
+    }
+
+    #hero h2 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    #hero p {
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+
+    /* Products Section */
+    #shop {
+      padding: 40px;
+      text-align: center;
+    }
+
+    #shop h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      justify-items: center;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0;
+    }
+
+    .product-card button {
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .product-card button:hover {
+      background-color: #555;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
       position: fixed;
       bottom: 0;
       width: 100%;
     }
-
-    h2 {
-      color: #222;
-    }
-
-    .post {
-      margin-bottom: 30px;
-    }
-
-    /* Radyo Titreşim Animasyonu */
-    .wave {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      background: #4caf50;
-      margin-left: 5px;
-      border-radius: 50%;
-      animation: pulse 1s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.6; }
-      50% { transform: scale(1.5); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.6; }
-    }
-
-    /* Titreşim için ses dalgası efekti */
-    .radio-box {
-      display: flex;
-      align-items: center;
-      font-size: 18px;
-      color: #333;
-      font-weight: bold;
-    }
-
-    .radio-box audio {
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
-    <h1>Ali'nin Blogu</h1>
-    <p>Hayat, Direniş ve Gerçekler Üzerine...</p>
+    <div class="logo">
+      <h1>Ali'nin E-Ticaret Blogu</h1>
+    </div>
+    <nav>
+      <a href="#home">Ana Sayfa</a>
+      <a href="#shop">Alışveriş</a>
+      <a href="#about">Hakkımızda</a>
+      <a href="#contact">İletişim</a>
+    </nav>
   </header>
 
-  <nav>
-    <a href="#">Anasayfa</a>
-    <a href="#">Hakkımda</a>
-    <a href="#">İletişim</a>
-  </nav>
+  <!-- Hero Section -->
+  <section id="hero">
+    <h2>Hayalinizdeki Ürünleri Keşfedin</h2>
+    <p>En yeni ürünler, indirimli fiyatlarla burada!</p>
+  </section>
 
-  <div class="content">
-
-    <!-- Dinamik Yazı Kutusu -->
-    <div class="info-box" id="quoteBox">
-      Günün sözü yükleniyor...
+  <!-- Products -->
+  <section id="shop">
+    <h2>Alışveriş Yapın</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200" alt="Ürün 1">
+        <h3>Ürün 1</h3>
+        <p>Fiyat: 50 TL</p>
+        <button>Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200" alt="Ürün 2">
+        <h3>Ürün 2</h3>
+        <p>Fiyat: 100 TL</p>
+        <button>Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/200" alt="Ürün 3">
+        <h3>Ürün 3</h3>
+        <p>Fiyat: 150 TL</p>
+        <button>Sepete Ekle</button>
+      </div>
     </div>
+  </section>
 
-    <!-- Hava Durumu Kutusu -->
-    <div class="info-box" id="weatherBox">
-      Hava durumu yükleniyor...
-    </div>
-
-    <!-- Radyo Kutusu -->
-    <div class="info-box radio-box" id="radioBox">
-      🎧 <span class="wave"></span> Relax FM çalıyor...
-      <audio controls autoplay>
-        <source src="https://radyo.dogannet.tv/slowturk" type="audio/mpeg">
-        Tarayıcınız ses etiketini desteklemiyor.
-      </audio>
-    </div>
-
-    <div class="post">
-      <h2>İlk Yazım: Merhaba Dünya!</h2>
-      <p>Bu blog, bir direnişin, yeniden doğuşun ve hiç vazgeçmeyen bir adamın hikayesidir. Şimdilik kısa ama yürekten bir başlangıç...</p>
-    </div>
-    <div class="post">
-      <h2>Hayat Bir Fragmandır</h2>
-      <p>Her düşüş bir kalkışın habercisidir. Eğer bu satırları okuyorsan, hâlâ ayaktayız demektir...</p>
-    </div>
-  </div>
-
+  <!-- Footer -->
   <footer>
-    © 2025 Ali'nin Blogu. Tüm hakları saklıdır.
+    <p>© 2025 Ali'nin E-Ticaret Blogu. Tüm hakları saklıdır.</p>
   </footer>
 
   <script>
-    // Günlük sözler
-    const quotes = [
-      "Küllerinden doğan, bir daha asla eskisi gibi olmaz.",
-      "Bugün yine yeniden başlamak için güzel bir gün.",
-      "Zorluklar seni değil, sabrını test eder.",
-      "Geriye değil, hep ileriye bak.",
-      "Yorgunsan, dur ve dinlen. Vazgeçme."
-    ];
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    document.getElementById('quoteBox').innerText = "Günün Sözü: " + randomQuote;
-
-    // Hava durumu (İstanbul örneği - Open-Meteo API)
-    fetch("https://api.open-meteo.com/v1/forecast?latitude=41.0082&longitude=28.9784&current_weather=true")
-      .then(response => response.json())
-      .then(data => {
-        const temp = data.current_weather.temperature;
-        const wind = data.current_weather.windspeed;
-        document.getElementById("weatherBox").innerText =
-          `İstanbul'da Hava: ${temp}°C, Rüzgar: ${wind} km/sa`;
-      })
-      .catch(error => {
-        document.getElementById("weatherBox").innerText = "Hava durumu alınamadı.";
+    // Sepete ürün ekleme işlevi
+    const buttons = document.querySelectorAll('.product-card button');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        alert('Ürün sepete eklendi!');
       });
+    });
   </script>
+
 </body>
 </html>
